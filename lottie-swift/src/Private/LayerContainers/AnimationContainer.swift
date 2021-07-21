@@ -29,7 +29,11 @@ final class AnimationContainer: CALayer {
   }
   
   func reloadImages() {
-    layerImageProvider.reloadImages()
+    layerImageProvider.reloadImages(seconds: nil)
+  }
+    
+  func reloadImages(seconds: CGFloat) {
+    layerImageProvider.reloadImages(seconds: seconds)
   }
   
   var renderScale: CGFloat = 1 {
@@ -146,7 +150,7 @@ final class AnimationContainer: CALayer {
     }
     
     layerImageProvider.addImageLayers(imageLayers)
-    layerImageProvider.reloadImages()
+    layerImageProvider.reloadImages(seconds: nil)
     layerTextProvider.addTextLayers(textLayers)
     layerTextProvider.reloadTexts()
     layerFontProvider.addTextLayers(textLayers)
@@ -210,7 +214,7 @@ final class AnimationContainer: CALayer {
 }
 
 fileprivate class BlankImageProvider: AnimationImageProvider {
-  func imageForAsset(asset: ImageAsset) -> CGImage? {
+  func imageForAsset(asset: ImageAsset, seconds: CGFloat?) -> CGImage? {
     return nil
   }
 }
