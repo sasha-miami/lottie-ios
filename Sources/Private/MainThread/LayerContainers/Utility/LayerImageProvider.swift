@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Connects a LottieImageProvider to a group of image layers
 final class LayerImageProvider {
@@ -20,7 +21,7 @@ final class LayerImageProvider {
     } else {
       imageAssets = [:]
     }
-    reloadImages()
+    reloadImages(seconds: nil)
   }
 
   // MARK: Internal
@@ -30,7 +31,7 @@ final class LayerImageProvider {
 
   var imageProvider: AnimationImageProvider {
     didSet {
-      reloadImages()
+      reloadImages(seconds: nil)
     }
   }
 
@@ -43,10 +44,10 @@ final class LayerImageProvider {
     }
   }
 
-  func reloadImages() {
+    func reloadImages(seconds: CGFloat?) {
     for imageLayer in imageLayers {
       if let asset = imageAssets[imageLayer.imageReferenceID] {
-        imageLayer.image = imageProvider.imageForAsset(asset: asset)
+        imageLayer.image = imageProvider.imageForAsset(asset: asset, seconds: seconds)
       }
     }
   }

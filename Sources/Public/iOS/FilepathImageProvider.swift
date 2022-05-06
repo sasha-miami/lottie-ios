@@ -28,7 +28,7 @@ public class FilepathImageProvider: AnimationImageProvider {
 
   // MARK: Public
 
-  public func imageForAsset(asset: ImageAsset) -> CGImage? {
+  public func imageForAsset(asset: ImageAsset, seconds: CGFloat?) -> CGImage? {
 
     if
       asset.name.hasPrefix("data:"),

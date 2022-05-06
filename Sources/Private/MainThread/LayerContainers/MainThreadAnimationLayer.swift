@@ -68,7 +68,7 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
     }
 
     layerImageProvider.addImageLayers(imageLayers)
-    layerImageProvider.reloadImages()
+    layerImageProvider.reloadImages(seconds: nil)
     layerTextProvider.addTextLayers(textLayers)
     layerTextProvider.reloadTexts()
     layerFontProvider.addTextLayers(textLayers)
@@ -176,8 +176,13 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
   }
 
   func reloadImages() {
-    layerImageProvider.reloadImages()
+    layerImageProvider.reloadImages(seconds: nil)
   }
+    
+  func reloadImages(seconds: CGFloat) {
+    layerImageProvider.reloadImages(seconds: seconds)
+  }
+
 
   func removeAnimations() {
     // no-op, since the primary animation is managed by the `AnimationView`.
@@ -260,7 +265,7 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
 // MARK: - BlankImageProvider
 
 private class BlankImageProvider: AnimationImageProvider {
-  func imageForAsset(asset _: ImageAsset) -> CGImage? {
+  func imageForAsset(asset: ImageAsset, seconds: CGFloat?) -> CGImage? {
     nil
   }
 }

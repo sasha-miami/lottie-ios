@@ -31,7 +31,7 @@ public class BundleImageProvider: AnimationImageProvider {
 
   // MARK: Public
 
-  public func imageForAsset(asset: ImageAsset) -> CGImage? {
+  public func imageForAsset(asset: ImageAsset, seconds: CGFloat?) -> CGImage? {
 
     if
       let data = Data(imageAsset: asset),

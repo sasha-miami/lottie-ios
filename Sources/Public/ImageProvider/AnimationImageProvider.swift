@@ -17,5 +17,5 @@ import Foundation
 /// Additionally custom Image Providers can be made to load images from a URL,
 /// or to Cache images.
 public protocol AnimationImageProvider {
-  func imageForAsset(asset: ImageAsset) -> CGImage?
+  func imageForAsset(asset: ImageAsset, seconds: CGFloat?) -> CGImage?
 }
