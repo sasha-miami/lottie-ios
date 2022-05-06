@@ -179,7 +179,7 @@ final class MainThreadAnimationLayer: CALayer, RootAnimationLayer {
     layerImageProvider.reloadImages(seconds: nil)
   }
     
-  func reloadImages(seconds: CGFloat) {
+  func reloadImages(seconds: CGFloat?) {
     layerImageProvider.reloadImages(seconds: seconds)
   }
 

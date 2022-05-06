@@ -357,6 +357,16 @@ extension CoreAnimationLayer: RootAnimationLayer {
       }
     }
   }
+    
+  func reloadImages(seconds: CGFloat?) {
+    // When the image provider changes, we have to update all `ImageLayer`s
+    // so they can query the most up-to-date image from the new image provider.
+    for sublayer in allSublayers {
+      if let imageLayer = sublayer as? ImageLayer {
+        imageLayer.setupImage(context: layerContext)
+      }
+    }
+  }
 
   func reloadFonts() {
     // When the text provider changes, we have to update all `TextLayer`s

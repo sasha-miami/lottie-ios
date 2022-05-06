@@ -25,6 +25,7 @@ protocol RootAnimationLayer: CALayer {
   func removeAnimations()
 
   func reloadImages()
+  func reloadImages(seconds: CGFloat?)
   func forceDisplayUpdate()
   func logHierarchyKeypaths()
 

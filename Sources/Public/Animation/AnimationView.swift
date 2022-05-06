@@ -518,6 +518,11 @@ final public class AnimationView: AnimationViewBase {
   public func reloadImages() {
     animationLayer?.reloadImages()
   }
+    
+  public func reloadImages(seconds: CGFloat) {
+    animationLayer?.reloadImages(seconds: seconds)
+  }
+
 
   /// Forces the AnimationView to redraw its contents.
   public func forceDisplayUpdate() {
