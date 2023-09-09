@@ -22,6 +22,9 @@ struct SnapshotConfiguration {
   /// A custom `AnimationImageProvider` to use when rendering this animation
   var customImageProvider: AnimationImageProvider?
 
+  /// A custom `AnimationTextProvider` to use when rendering this animation
+  var customTextProvider: AnimationTextProvider?
+
   /// A custom `AnimationFontProvider` to use when rendering this animation
   var customFontProvider: AnimationFontProvider?
 
@@ -43,6 +46,7 @@ extension SnapshotConfiguration {
     "Issues/issue_1407": .precision(0.9),
     "Nonanimating/FirstText": .precision(0.99),
     "Nonanimating/verifyLineHeight": .precision(0.99),
+    "Nonanimating/blend_mode_test": .precision(0.99),
 
     /// Test cases for the `AnimationKeypath` / `AnyValueProvider` system
     "Nonanimating/keypathTest": .customValueProviders([
@@ -55,14 +59,38 @@ extension SnapshotConfiguration {
       AnimationKeypath(keypath: "Checkmark Outlines 2.Group 1.Stroke 1.Color"): ColorValueProvider(.black),
       AnimationKeypath(keypath: "X Outlines.Group 1.Stroke 1.Color"): ColorValueProvider(.black),
       AnimationKeypath(keypath: "Switch Outline Outlines.Fill 1.Color"): ColorValueProvider([
-        Keyframe(value: Color.black, time: 0),
-        Keyframe(value: Color(r: 0.76, g: 0.76, b: 0.76, a: 1), time: 75),
-        Keyframe(value: Color.black, time: 150),
+        Keyframe(value: LottieColor.black, time: 0),
+        Keyframe(value: LottieColor(r: 0.76, g: 0.76, b: 0.76, a: 1), time: 75),
+        Keyframe(value: LottieColor.black, time: 150),
       ]),
+    ]),
+
+    "Issues/issue_1837_opacity": .customValueProviders([
+      AnimationKeypath(keypath: "Dark Gray Solid 1.Transform.Opacity"): FloatValueProvider(10),
+    ]),
+
+    "Issues/issue_1837_scale_rotation": .customValueProviders([
+      AnimationKeypath(keypath: "H2.Transform.Scale"): PointValueProvider(CGPoint(x: 200, y: 150)),
+      AnimationKeypath(keypath: "H2.Transform.Rotation"): FloatValueProvider(90),
+    ]),
+
+    "Issues/issue_2042": .customValueProviders([
+      AnimationKeypath(keypath: "MASTER.Transform.Position"): PointValueProvider(CGPoint(x: 214, y: 120)),
+    ]),
+
+    "Issues/issue_1664": .customValueProviders([
+      AnimationKeypath(keypath: "**.base_color.**.Color"): ColorValueProvider(.black),
+    ]),
+
+    "Issues/issue_1847": .customValueProviders([
+      AnimationKeypath(keypath: "**.Stroke 1.**.Color"): ColorValueProvider(.red),
     ]),
 
     // Test cases for `AnimatedImageProvider`
     "Nonanimating/_dog": .customImageProvider(HardcodedImageProvider(imageName: "Samples/Images/dog.png")),
+
+    // Test cases for `AnimatedTextProvider`
+    "Issues/issue_1722": .customTextProvider(HardcodedTextProvider(text: "Bounce-bounce")),
 
     // Test cases for `AnimationFontProvider`
     "Nonanimating/Text_Glyph": .customFontProvider(HardcodedFontProvider(font: UIFont(name: "Chalkduster", size: 36)!)),
@@ -122,6 +150,15 @@ extension SnapshotConfiguration {
     return configuration
   }
 
+  static func customTextProvider(
+    _ customTextProvider: AnimationTextProvider)
+    -> SnapshotConfiguration
+  {
+    var configuration = SnapshotConfiguration.default
+    configuration.customTextProvider = customTextProvider
+    return configuration
+  }
+
   /// A `SnapshotConfiguration` value using the given custom value providers
   static func customFontProvider(
     _ customFontProvider: AnimationFontProvider)
@@ -143,10 +180,10 @@ extension SnapshotConfiguration {
   }
 }
 
-// MARK: - Color helpers
+// MARK: - LottieColor helpers
 
-extension Color {
-  static let black = Color(r: 0, g: 0, b: 0, a: 1)
-  static let red = Color(r: 1, g: 0, b: 0, a: 1)
+extension LottieColor {
+  static let black = LottieColor(r: 0, g: 0, b: 0, a: 1)
+  static let red = LottieColor(r: 1, g: 0, b: 0, a: 1)
 }
 #endif

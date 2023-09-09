@@ -7,8 +7,9 @@ import QuartzCore
 
 /// Context available when constructing an `AnimationLayer`
 struct LayerContext {
-  let animation: Animation
+  let animation: LottieAnimation
   let imageProvider: AnimationImageProvider
+  let textProvider: AnimationTextProvider
   let fontProvider: AnimationFontProvider
   let compatibilityTracker: CompatibilityTracker
   var layerName: String
@@ -27,9 +28,15 @@ extension LayerModel {
   func makeAnimationLayer(context: LayerContext) throws -> BaseCompositionLayer? {
     let context = context.forLayer(self)
 
+    if hidden {
+      return TransformLayer(layerModel: self)
+    }
+
     switch (type, self) {
     case (.precomp, let preCompLayerModel as PreCompLayerModel):
-      return try PreCompLayer(preCompLayer: preCompLayerModel, context: context)
+      let preCompLayer = PreCompLayer(preCompLayer: preCompLayerModel)
+      try preCompLayer.setup(context: context)
+      return preCompLayer
 
     case (.solid, let solidLayerModel as SolidLayerModel):
       return SolidLayer(solidLayerModel)

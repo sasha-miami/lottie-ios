@@ -1,6 +1,6 @@
 namespace :build do
   desc 'Builds all packages and executables'
-  task all: ['package:all', 'example:all']
+  task all: ['package:all', 'example:all', 'xcframework']
 
   desc 'Builds the Lottie package for supported platforms'
   namespace :package do
@@ -30,7 +30,7 @@ namespace :build do
 
     desc 'Builds the iOS Lottie Example app'
     task :iOS do
-      xcodebuild('build -scheme "Example (iOS)" -destination "platform=iOS Simulator,name=iPhone 8" -workspace Lottie.xcworkspace')
+      xcodebuild('build -scheme "Example (iOS)" -destination "platform=iOS Simulator,name=iPhone SE (3rd generation)" -workspace Lottie.xcworkspace')
     end
 
     desc 'Builds the macOS Lottie Example app'
@@ -43,18 +43,47 @@ namespace :build do
       xcodebuild('build -scheme "Example (tvOS)" -destination "platform=tvOS Simulator,name=Apple TV" -workspace Lottie.xcworkspace')
     end
   end
+
+  desc 'Builds an xcframework for all supported platforms'
+  task :xcframework do
+    sh 'rm -rf .build/archives'
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (iOS)" -destination generic/platform=iOS -archivePath ".build/archives/Lottie_iOS" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (iOS)" -destination "generic/platform=iOS Simulator" -archivePath ".build/archives/Lottie_iOS_Simulator" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (iOS)" -destination "generic/platform=macOS,variant=Mac Catalyst" -archivePath ".build/archives/Lottie_Mac_Catalyst" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (macOS)" -destination generic/platform=macOS -archivePath ".build/archives/Lottie_macOS" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (tvOS)" -destination generic/platform=tvOS -archivePath ".build/archives/Lottie_tvOS" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild('archive -workspace Lottie.xcworkspace -scheme "Lottie (tvOS)" -destination "generic/platform=tvOS Simulator" -archivePath ".build/archives/Lottie_tvOS_Simulator" SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES')
+    xcodebuild(
+      [
+        '-create-xcframework',
+        '-framework .build/archives/Lottie_iOS.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-framework .build/archives/Lottie_iOS_Simulator.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-framework .build/archives/Lottie_Mac_Catalyst.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-framework .build/archives/Lottie_macOS.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-framework .build/archives/Lottie_tvOS.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-framework .build/archives/Lottie_tvOS_Simulator.xcarchive/Products/Library/Frameworks/Lottie.framework',
+        '-output .build/archives/Lottie.xcframework'
+      ].join(" "))
+    Dir.chdir('.build/archives') do
+      # Use --symlinks to avoid "Multiple binaries share the same codesign path. This can happen if your build process copies frameworks by following symlinks." 
+      # error when validating macOS apps (#1948)
+      sh 'zip -r --symlinks Lottie.xcframework.zip Lottie.xcframework'
+      sh 'rm -rf Lottie.xcframework'
+    end
+    sh 'swift package compute-checksum .build/archives/Lottie.xcframework.zip'
+  end
 end
 
 namespace :test do
   desc 'Tests the Lottie package for iOS'
   task :package do
     sh 'rm -rf Tests/Artifacts'
-    xcodebuild('test -scheme "Lottie (iOS)" -destination "platform=iOS Simulator,name=iPhone 8" -resultBundlePath Tests/Artifacts/LottieTests.xcresult')
+    xcodebuild('test -scheme "Lottie (iOS)" -destination "platform=iOS Simulator,name=iPhone SE (3rd generation)" -resultBundlePath Tests/Artifacts/LottieTests.xcresult')
   end
 
   desc 'Processes .xcresult artifacts from the most recent test:package execution'
   task :process do
-    sh 'mint run ChargePoint/xcparse@2.2.1 xcparse attachments Tests/Artifacts/LottieTests.xcresult Tests/Artifacts/TestAttachments'
+    sh 'mint run ChargePoint/xcparse@2.3.1 xcparse attachments Tests/Artifacts/LottieTests.xcresult Tests/Artifacts/TestAttachments'
   end
 
   desc 'Tests Carthage support'
@@ -74,7 +103,8 @@ namespace :test do
       sh 'rm -rf ~/Library/Caches/org.carthage.CarthageKit/DerivedData'
 
       # Build a test app that imports and uses the LottieCarthage framework
-      xcodebuild('build -scheme CarthageTest -destination "platform=iOS Simulator,name=iPhone 8"')
+      xcodebuild('build -scheme CarthageTest -destination "platform=iOS Simulator,name=iPhone SE (3rd generation)"')
+      xcodebuild('build -scheme CarthageTest-macOS')
     end
   end
 
@@ -91,19 +121,8 @@ end
 
 namespace :lint do
   desc 'Lints swift files'
-  task swift: ['swift:swiftlint', 'swift:swiftformat']
-
-  desc 'Lints swift files'
-  namespace :swift do
-    desc 'Lints swift files using SwiftLint'
-    task :swiftlint do
-      sh 'mint run SwiftLint lint Sources Tests Example Package.swift --config script/lint/swiftlint.yml --strict'
-    end
-
-    desc 'Lints swift files using SwiftLint'
-    task :swiftformat do
-      sh 'mint run SwiftFormat Sources Tests Example Package.swift --config script/lint/airbnb.swiftformat --lint'
-    end
+  task :swift do
+    sh 'swift package --allow-writing-to-package-directory format --lint'
   end
 
   desc 'Lints the CocoaPods podspec'
@@ -113,13 +132,19 @@ namespace :lint do
 end
 
 namespace :format do
-  desc 'Runs SwiftFormat'
+  desc 'Formats swift files'
   task :swift do
-    sh 'mint run SwiftLint autocorrect Sources Tests Example Package.swift --config script/lint/swiftlint.yml'
-    sh 'mint run SwiftFormat Sources Tests Example Package.swift --config script/lint/airbnb.swiftformat'
+    sh 'swift package --allow-writing-to-package-directory format'
   end
 end
 
 def xcodebuild(command)
-  sh "set -o pipefail && xcodebuild #{command} | mint run xcbeautify"
+  # Check if the mint tool is installed -- if so, pipe the xcodebuild output through xcbeautify
+  `which mint`
+
+  if $?.success?
+    sh "set -o pipefail && xcodebuild #{command} | mint run thii/xcbeautify@0.10.2"
+  else
+    sh "xcodebuild #{command}"
+  end
 end

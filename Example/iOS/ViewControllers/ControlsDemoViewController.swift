@@ -46,9 +46,9 @@ final class ControlsDemoViewController: CollectionViewController {
           "Checkmark Outlines 2.Group 1.Stroke 1.Color": [Keyframe(.black)],
           "X Outlines.Group 1.Stroke 1.Color": [Keyframe(.black)],
           "Switch Outline Outlines.Fill 1.Color": [
-            Keyframe(value: Color.black, time: 0),
-            Keyframe(value: Color(r: 0.76, g: 0.76, b: 0.76, a: 1), time: 75),
-            Keyframe(value: Color.black, time: 150),
+            Keyframe(value: LottieColor.black, time: 0),
+            Keyframe(value: LottieColor(r: 0.76, g: 0.76, b: 0.76, a: 1), time: 75),
+            Keyframe(value: LottieColor.black, time: 150),
           ],
         ]))
 
@@ -62,12 +62,21 @@ final class ControlsDemoViewController: CollectionViewController {
           .init(fromMarker: "touchDownEnd", toMarker: "touchUpCancel", event: .touchUpOutside),
           .init(fromMarker: "touchDownEnd", toMarker: "touchUpEnd", event: .touchUpInside),
         ]))
+
+    AnimatedSwitchRow.itemModel(
+      dataID: "issue-1877",
+      content: .init(
+        animationName: "Samples/Issues/issue_1877",
+        title: "Issue #1877",
+        onTimeRange: nil, // use the default (0...1)
+        offTimeRange: nil, // use the default (1...0)
+        colorValueProviders: ["**.Color": [Keyframe(.black)]]))
   }
 
 }
 
-extension Color {
-  static var black: Color {
+extension LottieColor {
+  static var black: LottieColor {
     .init(r: 0, g: 0, b: 0, a: 1)
   }
 }

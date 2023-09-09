@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'lottie-ios'
-  s.version          = '3.3.0'
+  s.version          = '4.2.0'
   s.summary          = 'A library to render native animations from bodymovin json'
 
   s.description = <<-DESC
@@ -19,16 +19,15 @@ Lottie enables designers to create and ship beautiful animations without an engi
 
   s.homepage         = 'https://github.com/airbnb/lottie-ios'
   s.license          = { :type => 'Apache', :file => 'LICENSE' }
-  s.author           = { 'Brandon Withrow' => 'buba447@gmail.com' }
+  s.author           = { 'Brandon Withrow' => 'buba447@gmail.com', 'Cal Stephens' => 'cal.stephens@airbnb.com' }
   s.source           = { :git => 'https://github.com/airbnb/lottie-ios.git', :tag => s.version.to_s }
 
-  s.swift_version = '5.4'
+  s.swift_version = '5.5'
   s.ios.deployment_target = '11.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.12'
   s.tvos.deployment_target = '11.0'
 
   s.source_files = 'Sources/**/*'
-  s.exclude_files = 'Sources/Lottie.swift'
   s.ios.exclude_files = 'Sources/Public/MacOS/**/*'
   s.tvos.exclude_files = 'Sources/Public/MacOS/**/*'
   s.osx.exclude_files = 'Sources/Public/iOS/**/*'
@@ -37,5 +36,4 @@ Lottie enables designers to create and ship beautiful animations without an engi
   s.tvos.frameworks = ['UIKit', 'CoreGraphics', 'QuartzCore']
   s.osx.frameworks = ['AppKit', 'CoreGraphics', 'QuartzCore']
   s.module_name = 'Lottie'
-  s.header_dir = 'Lottie'
 end

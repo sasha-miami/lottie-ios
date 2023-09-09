@@ -10,9 +10,26 @@ public final class LottieLogger {
   // MARK: Lifecycle
 
   public init(
-    assert: @escaping Assert = Swift.assert,
-    assertionFailure: @escaping AssertionFailure = Swift.assertionFailure,
+    assert: @escaping Assert = { condition, message, file, line in
+      // If we default to `Swift.assert` directly with `assert: Assert = Swift.assert`,
+      // the call will unexpectedly not respect the -O flag and will crash in release
+      // https://github.com/apple/swift/issues/60249
+      Swift.assert(condition(), message(), file: file, line: line)
+    },
+    assertionFailure: @escaping AssertionFailure = { message, file, line in
+      // If we default to `Swift.assertionFailure` directly with
+      // `assertionFailure: AssertionFailure = Swift.assertionFailure`,
+      // the call will unexpectedly not respect the -O flag and will crash in release
+      // https://github.com/apple/swift/issues/60249
+      Swift.assertionFailure(message(), file: file, line: line)
+    },
     warn: @escaping Warn = { message, _, _ in
+      #if DEBUG
+      // swiftlint:disable:next no_direct_standard_out_logs
+      print(message())
+      #endif
+    },
+    info: @escaping Info = { message in
       #if DEBUG
       // swiftlint:disable:next no_direct_standard_out_logs
       print(message())
@@ -22,6 +39,7 @@ public final class LottieLogger {
     _assert = assert
     _assertionFailure = assertionFailure
     _warn = warn
+    _info = info
   }
 
   // MARK: Public
@@ -47,6 +65,9 @@ public final class LottieLogger {
     _ fileID: StaticString,
     _ line: UInt)
     -> Void
+
+  /// Prints a purely informational message.
+  public typealias Info = (_ message: @autoclosure () -> String) -> Void
 
   /// The shared instance used to log Lottie assertions and warnings.
   ///
@@ -81,11 +102,17 @@ public final class LottieLogger {
     _warn(message(), fileID, line)
   }
 
+  /// Logs a purely informational message.
+  public func info(_ message: @autoclosure () -> String = String()) {
+    _info(message())
+  }
+
   // MARK: Private
 
   private let _assert: Assert
   private let _assertionFailure: AssertionFailure
   private let _warn: Warn
+  private let _info: Info
 
 }
 
@@ -98,10 +125,12 @@ extension LottieLogger {
     LottieLogger(
       assert: { condition, message, _, _ in
         if !condition() {
+          // swiftlint:disable:next no_direct_standard_out_logs
           print(message())
         }
       },
       assertionFailure: { message, _, _ in
+        // swiftlint:disable:next no_direct_standard_out_logs
         print(message())
       })
   }

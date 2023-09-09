@@ -28,28 +28,26 @@ public class FilepathImageProvider: AnimationImageProvider {
   // MARK: Public
 
   public func imageForAsset(asset: ImageAsset) -> CGImage? {
-
     if
       asset.name.hasPrefix("data:"),
       let url = URL(string: asset.name),
       let data = try? Data(contentsOf: url),
       let image = NSImage(data: data)
     {
-      return image.CGImage
+      return image.lottie_CGImage
     }
 
     let directPath = filepath.appendingPathComponent(asset.name).path
     if FileManager.default.fileExists(atPath: directPath) {
-
-      return NSImage(contentsOfFile: directPath)?.CGImage
+      return NSImage(contentsOfFile: directPath)?.lottie_CGImage
     }
 
     let pathWithDirectory = filepath.appendingPathComponent(asset.directory).appendingPathComponent(asset.name).path
     if FileManager.default.fileExists(atPath: pathWithDirectory) {
-      return NSImage(contentsOfFile: pathWithDirectory)?.CGImage
+      return NSImage(contentsOfFile: pathWithDirectory)?.lottie_CGImage
     }
 
-    LottieLogger.shared.assertionFailure("Could not find image \"\(asset.name)\" in bundle")
+    LottieLogger.shared.warn("Could not find image \"\(asset.name)\" in bundle")
     return nil
   }
 
@@ -60,7 +58,7 @@ public class FilepathImageProvider: AnimationImageProvider {
 
 extension NSImage {
   @nonobjc
-  var CGImage: CGImage? {
+  var lottie_CGImage: CGImage? {
     guard let imageData = tiffRepresentation else { return nil }
     guard let sourceData = CGImageSourceCreateWithData(imageData as CFData, nil) else { return nil }
     return CGImageSourceCreateImageAtIndex(sourceData, 0, nil)

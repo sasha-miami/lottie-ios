@@ -29,11 +29,17 @@ class AnimationPreviewViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .systemBackground
+    view.backgroundColor = .secondarySystemBackground
 
-    let animation = Animation.named(animationName)
+    if let animation = LottieAnimation.named(animationName) {
+      animationView.animation = animation
+    } else {
+      DotLottieFile.named(animationName) { [animationView] result in
+        guard case Result.success(let lottie) = result else { return }
+        animationView.loadAnimation(from: lottie)
+      }
+    }
 
-    animationView.animation = animation
     animationView.contentMode = .scaleAspectFit
     view.addSubview(animationView)
 
@@ -46,11 +52,19 @@ class AnimationPreviewViewController: UIViewController {
     animationView.backgroundBehavior = .pauseAndRestore
     animationView.translatesAutoresizingMaskIntoConstraints = false
 
+    engineLabel.font = .preferredFont(forTextStyle: .footnote)
+    engineLabel.textColor = .secondaryLabel
+    engineLabel.translatesAutoresizingMaskIntoConstraints = false
+    engineLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+    view.addSubview(engineLabel)
+
     NSLayoutConstraint.activate([
       animationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      animationView.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -12),
+      animationView.bottomAnchor.constraint(equalTo: engineLabel.topAnchor, constant: -8),
       animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      engineLabel.trailingAnchor.constraint(equalTo: slider.trailingAnchor),
+      engineLabel.bottomAnchor.constraint(equalTo: slider.topAnchor),
     ])
 
     /// Slider
@@ -77,6 +91,11 @@ class AnimationPreviewViewController: UIViewController {
     if animationView.isAnimationPlaying {
       slider.value = Float(animationView.realtimeAnimationProgress)
     }
+
+    engineLabel.text = [
+      animationView.currentRenderingEngine?.description,
+      animationView.isAnimationPlaying ? "Playing" : "Paused",
+    ].compactMap { $0 }.joined(separator: " · ")
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -87,19 +106,21 @@ class AnimationPreviewViewController: UIViewController {
   // MARK: Private
 
   private let animationName: String
-  private let animationView = AnimationView()
+  private let animationView = LottieAnimationView()
   private let slider = UISlider()
+  private let engineLabel = UILabel()
 
   private var displayLink: CADisplayLink?
 
   private var loopMode = LottieLoopMode.autoReverse
+  private var speed: CGFloat = 1
   private var fromProgress: AnimationProgressTime = 0
   private var toProgress: AnimationProgressTime = 1
 
   private func configureSettingsMenu() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(
       title: "Settings",
-      image: UIImage(systemName: "repeat.circle")!,
+      image: UIImage(systemName: "repeat.circle"),
       primaryAction: nil,
       menu: UIMenu(children: [
         UIMenu(
@@ -124,6 +145,39 @@ class AnimationPreviewViewController: UIViewController {
               state: loopMode == .playOnce ? .on : .off,
               handler: { [unowned self] _ in
                 loopMode = .playOnce
+                updateAnimation()
+              }),
+          ]),
+
+        UIMenu(
+          title: "Speed",
+          children: [
+            UIAction(
+              title: "-100%",
+              state: speed == -1 ? .on : .off,
+              handler: { [unowned self] _ in
+                speed = -1
+                updateAnimation()
+              }),
+            UIAction(
+              title: "-50%",
+              state: speed == -0.5 ? .on : .off,
+              handler: { [unowned self] _ in
+                speed = -0.5
+                updateAnimation()
+              }),
+            UIAction(
+              title: "50%",
+              state: speed == 0.5 ? .on : .off,
+              handler: { [unowned self] _ in
+                speed = 0.5
+                updateAnimation()
+              }),
+            UIAction(
+              title: "100%",
+              state: speed == 1 ? .on : .off,
+              handler: { [unowned self] _ in
+                speed = 1
                 updateAnimation()
               }),
           ]),
@@ -191,6 +245,7 @@ class AnimationPreviewViewController: UIViewController {
 
   private func updateAnimation() {
     animationView.play(fromProgress: fromProgress, toProgress: toProgress, loopMode: loopMode)
+    animationView.animationSpeed = speed
     configureSettingsMenu()
   }
 
