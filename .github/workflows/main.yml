@@ -14,7 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         xcode:
-        - '13.2.1' # Swift 5.5
         - '13.4.1' # Swift 5.6
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +21,7 @@ jobs:
         with:
           xcode: ${{ matrix.xcode }}
       - name: Build Package
-        run: bundle exec rake build:package:all
+        run: SKIP_VISION_OS=true bundle exec rake build:package:all
 
   build-package-macos-13:
     name: "Build Package"
@@ -33,13 +32,16 @@ jobs:
         xcode:
         - '14.2' # Swift 5.7
         - '14.3' # Swift 5.8
+        - '15.0' # Swift 5.9
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup
         with:
           xcode: ${{ matrix.xcode }}
       - name: Build Package
-        run: bundle exec rake build:package:all
+        # Once there is a production Xcode version with the visionOS SDK,
+        # we will want to use that version without `SKIP_VISION_OS=true`
+        run: SKIP_VISION_OS=true bundle exec rake build:package:all
 
   build-example:
     name: "Build Example App"
@@ -47,8 +49,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup
+        with:
+          xcode: '15.0' # Swift 5.9
       - name: Build Example
-        run: bundle exec rake build:example:all
+        # Once there is a production Xcode version with the visionOS SDK,
+        # we will want to remove `SKIP_VISION_OS=true`
+        run: SKIP_VISION_OS=true bundle exec rake build:example:all
 
   test-package:
     name: "Test Package"
@@ -70,19 +76,37 @@ jobs:
           name: TestArtifacts
           path: Tests/Artifacts
 
-  build-xcframework:
+  emerge-upload:
+    name: "Emerge Upload"
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup
+      - name: Build Package
+        run: bundle exec rake emerge:upload
+        env:
+          EMERGE_API_TOKEN: ${{ secrets.EMERGE_API_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+
+  build-xcframework-macos-12:
     name: "Build XCFramework"
     runs-on: macos-12
+    strategy:
+      matrix:
+        xcode:
+          # XCFrameworks are forwards-compatible but not backwards-compatible.
+          # The Xcode version we use for this job is that oldest Xcode version that
+          # will be able to use these XCFrameworks and the lottie-spm package.
+          - '13.4.1' # Swift 5.6.1
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup
         with:
-          # XCFrameworks are forwards-compatible but not backwards-compatible.
-          # The Xcode version we use for this job is that oldest Xcode version that
-          # will be able to use these XCFrameworks and the lottie-spm package.
-          xcode: '13.2.1' # Swift 5.5.2
+          xcode: ${{ matrix.xcode }}
       - name: Build XCFramework
-        run: bundle exec rake build:xcframework
+        # Once there is a production Xcode version with the visionOS SDK, we will 
+        # need to also build an XCFramework using that version but without `SKIP_VISION_OS=true`
+        run: SKIP_VISION_OS=true bundle exec rake build:xcframework[Lottie-Xcode-${{ matrix.xcode }}]
       - name: Upload XCFramework
         uses: actions/upload-artifact@v2
         with:
@@ -106,16 +130,53 @@ jobs:
       - name: Lint CocoaPod Podspec
         run: bundle exec rake lint:podspec
 
-  spm:
-    name: "Test Swift Package Manager support"
+  spm-xcode-15:
+    name: "Test Swift Package Manager"
     runs-on: macos-13
+    strategy:
+      matrix:
+        xcode:
+        - '15.0' # Swift 5.9
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup
         with:
           install-mint: true
+          xcode: ${{ matrix.xcode }}
       - name: Test Swift Package Manager support
         run: bundle exec rake test:spm
+
+  spm-xcode-14:
+    name: "Test Swift Package Manager"
+    runs-on: macos-13
+    strategy:
+      matrix:
+        xcode:
+        - '14.3' # Swift 5.8
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup
+        with:
+          install-mint: true
+          xcode: ${{ matrix.xcode }}
+      - name: Test Swift Package Manager support
+        run: SKIP_VISION_OS=true bundle exec rake test:spm
+
+  spm-xcode-13:
+    name: "Test Swift Package Manager"
+    runs-on: macos-12
+    strategy:
+      matrix:
+        xcode:
+        - '13.4.1' # Swift 5.6
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup
+        with:
+          install-mint: true
+          xcode: ${{ matrix.xcode }}
+      - name: Test Swift Package Manager support
+        run: SKIP_VISION_OS=true bundle exec rake test:spm
 
   carthage:
     name: "Test Carthage support"
@@ -126,6 +187,7 @@ jobs:
         with:
           install-mint: true
           install-carthage: true
+          xcode: '14.3' # Swift 5.8
       - name: Test Carthage support
         run: bundle exec rake test:carthage
 
@@ -137,3 +199,12 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Lint Swift
         run: bundle exec rake lint:swift
+
+  embedded-libraries:
+    name: "Lint Embedded Libraries"
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup
+      - name: Lint Embedded Libraries
+        run: bundle exec rake lint:EmbeddedLibraries

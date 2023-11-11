@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'lottie-ios'
-  s.version          = '4.2.0'
+  s.version          = '4.3.3'
   s.summary          = 'A library to render native animations from bodymovin json'
 
   s.description = <<-DESC
@@ -22,12 +22,13 @@ Lottie enables designers to create and ship beautiful animations without an engi
   s.author           = { 'Brandon Withrow' => 'buba447@gmail.com', 'Cal Stephens' => 'cal.stephens@airbnb.com' }
   s.source           = { :git => 'https://github.com/airbnb/lottie-ios.git', :tag => s.version.to_s }
 
-  s.swift_version = '5.5'
+  s.swift_version = '5.6'
   s.ios.deployment_target = '11.0'
   s.osx.deployment_target = '10.12'
   s.tvos.deployment_target = '11.0'
 
   s.source_files = 'Sources/**/*'
+  s.exclude_files = 'Sources/**/*.md'
   s.ios.exclude_files = 'Sources/Public/MacOS/**/*'
   s.tvos.exclude_files = 'Sources/Public/MacOS/**/*'
   s.osx.exclude_files = 'Sources/Public/iOS/**/*'
@@ -35,5 +36,6 @@ Lottie enables designers to create and ship beautiful animations without an engi
   s.ios.frameworks = ['UIKit', 'CoreGraphics', 'QuartzCore']
   s.tvos.frameworks = ['UIKit', 'CoreGraphics', 'QuartzCore']
   s.osx.frameworks = ['AppKit', 'CoreGraphics', 'QuartzCore']
+  s.weak_frameworks = ['SwiftUI', 'Combine']
   s.module_name = 'Lottie'
 end
