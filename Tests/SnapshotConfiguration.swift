@@ -34,11 +34,21 @@ struct SnapshotConfiguration {
   ///    the code supporting the automatic engine.
   var testWithAutomaticEngine = false
 
-  /// Whether or not this snapshot doesn't animate, so only needs to be snapshot once.
+  /// Whether or not this sample should be excluded from testing with the Core Animation rendering engine
+  ///  - Can be used for animations that are very expensive to render with the CA engine
+  var excludeCoreAnimationRenderingEngine = false
+
+  /// Custom progress values (from 0 to 1) that should be screenshot
   var customProgressValuesToSnapshot: [Double]?
+
+  /// Custom frame values that should be screenshot
+  var customFramesToSnapshot: [Double]?
 
   /// The maximum size to allow for the resulting snapshot image
   var maxSnapshotDimension: CGFloat = 500
+
+  /// A `viewportFrame` value to apply to the `LottieAnimationView`, which crops the animation
+  var customViewportFrame: CGRect?
 }
 
 // MARK: Custom mapping
@@ -73,15 +83,15 @@ extension SnapshotConfiguration {
 
     /// Test cases for the `AnimationKeypath` / `AnyValueProvider` system
     "Nonanimating/keypathTest": .customValueProviders([
-      AnimationKeypath(keypath: "**.Stroke 1.Color"): ColorValueProvider(.black),
-      AnimationKeypath(keypath: "**.Fill 1.Color"): ColorValueProvider(.red),
+      "**.Stroke 1.Color": ColorValueProvider(.black),
+      "**.Fill 1.Color": ColorValueProvider(.red),
     ]),
 
     "Switch": .customValueProviders([
-      AnimationKeypath(keypath: "Checkmark Outlines.Group 1.Stroke 1.Color"): ColorValueProvider(.black),
-      AnimationKeypath(keypath: "Checkmark Outlines 2.Group 1.Stroke 1.Color"): ColorValueProvider(.black),
-      AnimationKeypath(keypath: "X Outlines.Group 1.Stroke 1.Color"): ColorValueProvider(.black),
-      AnimationKeypath(keypath: "Switch Outline Outlines.Fill 1.Color"): ColorValueProvider([
+      "Checkmark Outlines.Group 1.Stroke 1.Color": ColorValueProvider(.black),
+      "Checkmark Outlines 2.Group 1.Stroke 1.Color": ColorValueProvider(.black),
+      "X Outlines.Group 1.Stroke 1.Color": ColorValueProvider(.black),
+      "Switch Outline Outlines.Fill 1.Color": ColorValueProvider([
         Keyframe(value: LottieColor.black, time: 0),
         Keyframe(value: LottieColor(r: 0.76, g: 0.76, b: 0.76, a: 1), time: 75),
         Keyframe(value: LottieColor.black, time: 150),
@@ -89,24 +99,24 @@ extension SnapshotConfiguration {
     ]),
 
     "Issues/issue_1837_opacity": .customValueProviders([
-      AnimationKeypath(keypath: "Dark Gray Solid 1.Transform.Opacity"): FloatValueProvider(10),
+      "Dark Gray Solid 1.Transform.Opacity": FloatValueProvider(10),
     ]),
 
     "Issues/issue_1837_scale_rotation": .customValueProviders([
-      AnimationKeypath(keypath: "H2.Transform.Scale"): PointValueProvider(CGPoint(x: 200, y: 150)),
-      AnimationKeypath(keypath: "H2.Transform.Rotation"): FloatValueProvider(90),
+      "H2.Transform.Scale": PointValueProvider(CGPoint(x: 200, y: 150)),
+      "H2.Transform.Rotation": FloatValueProvider(90),
     ]),
 
     "Issues/issue_2042": .customValueProviders([
-      AnimationKeypath(keypath: "MASTER.Transform.Position"): PointValueProvider(CGPoint(x: 214, y: 120)),
+      "MASTER.Transform.Position": PointValueProvider(CGPoint(x: 214, y: 120)),
     ]),
 
     "Issues/issue_1664": .customValueProviders([
-      AnimationKeypath(keypath: "**.base_color.**.Color"): ColorValueProvider(.black),
+      "**.base_color.**.Color": ColorValueProvider(.black),
     ]).precision(0.95),
 
     "Issues/issue_1854": .customValueProviders([
-      AnimationKeypath(keypath: "**.Colors"): GradientValueProvider(
+      "**.Colors": GradientValueProvider(
         [
           LottieColor(r: 0, g: 0, b: 0, a: 0),
           LottieColor(r: 1, g: 1, b: 1, a: 0.5),
@@ -116,15 +126,19 @@ extension SnapshotConfiguration {
     ]),
 
     "Issues/issue_1847": .customValueProviders([
-      AnimationKeypath(keypath: "**.Stroke 1.**.Color"): ColorValueProvider(.red),
+      "**.Stroke 1.**.Color": ColorValueProvider(.red),
     ]),
 
     "Issues/issue_2150": .customValueProviders([
-      AnimationKeypath(keypath: "**.Color"): ColorValueProvider(.red),
+      "**.Color": ColorValueProvider(.red),
     ]),
 
     "Issues/issue_2094": .customValueProviders([
-      AnimationKeypath(keypath: "**.Stroke Width"): FloatValueProvider(2),
+      "**.Stroke Width": FloatValueProvider(2),
+    ]),
+
+    "Issues/issue_2262": .customValueProviders([
+      "**.Accent.**.Color": ColorValueProvider(.black),
     ]),
 
     // Test cases for `AnimatedImageProvider`
@@ -156,6 +170,20 @@ extension SnapshotConfiguration {
       ]))
       .progressValuesToSnapshot([0.3, 0.75]),
 
+    "Issues/issue_2209": SnapshotConfiguration.default
+      .framesToSnapshot([
+        4.999, // Should show frame 4
+        5.0, // Should show frame 5
+        9.9999999, // Should show frame 9
+        10, // Should show frame 10
+      ]),
+
+    "Issues/issue_2226": SnapshotConfiguration.default
+      .framesToSnapshot([
+        19.25,
+        113,
+      ]),
+
     // Test cases for `AnimationFontProvider`
     "Nonanimating/Text_Glyph": .customFontProvider(HardcodedFontProvider(font: UIFont(name: "Chalkduster", size: 36)!)),
 
@@ -171,6 +199,14 @@ extension SnapshotConfiguration {
       ]
       return configuration
     }(),
+
+    /// Animations which are very expensive to render using the Core Animation rendering engine,
+    /// and should fall back to the Main Thread engine when using `RenderingEngineOption.automatic`.
+    "Issues/pr_2286": .excludeCoreAnimationRenderingEngine,
+
+    // Other misc test cases
+    "Issues/issue_2310": .customViewportFrame(
+      CGRect(x: 0, y: 0, width: 85, height: 85).insetBy(dx: 10, dy: 10)),
   ]
 }
 
@@ -180,8 +216,18 @@ extension SnapshotConfiguration {
   /// The default configuration to use if no custom mapping is provided
   static let `default` = SnapshotConfiguration()
 
+  /// Opts this snapshot in to being tested with the automatic rendering engine option
   static var useAutomaticRenderingEngine: SnapshotConfiguration {
     var configuration = SnapshotConfiguration.default
+    configuration.testWithAutomaticEngine = true
+    return configuration
+  }
+
+  /// Excludes this snapshot from being tested with the Core Animation rendering engine.
+  /// If this is the case then using the automatic engine should fall back to the main thread engine.
+  static var excludeCoreAnimationRenderingEngine: SnapshotConfiguration {
+    var configuration = SnapshotConfiguration.default
+    configuration.excludeCoreAnimationRenderingEngine = true
     configuration.testWithAutomaticEngine = true
     return configuration
   }
@@ -189,9 +235,9 @@ extension SnapshotConfiguration {
   /// The `SnapshotConfiguration` to use for the given sample JSON file name
   static func forSample(named sampleName: String) -> SnapshotConfiguration {
     if let customConfiguration = customMapping[sampleName] {
-      return customConfiguration
+      customConfiguration
     } else {
-      return .default
+      .default
     }
   }
 
@@ -241,6 +287,13 @@ extension SnapshotConfiguration {
     return configuration
   }
 
+  /// A `SnapshotConfiguration` using the given custom `viewportFrame`
+  static func customViewportFrame(_ viewportFrame: CGRect) -> SnapshotConfiguration {
+    var configuration = SnapshotConfiguration.default
+    configuration.customViewportFrame = viewportFrame
+    return configuration
+  }
+
   /// A copy of this `SnapshotConfiguration` with `customProgressValuesToSnapshot` updated to `[0]`
   func nonanimating(_ isNonanimating: Bool = true) -> SnapshotConfiguration {
     var copy = self
@@ -252,6 +305,13 @@ extension SnapshotConfiguration {
   func progressValuesToSnapshot(_ progressValuesToSnapshot: [Double]) -> SnapshotConfiguration {
     var copy = self
     copy.customProgressValuesToSnapshot = progressValuesToSnapshot
+    return copy
+  }
+
+  /// A copy of this `SnapshotConfiguration` with `customFramesToSnapshot` set to the given value
+  func framesToSnapshot(_ framesToSnapshot: [Double]) -> SnapshotConfiguration {
+    var copy = self
+    copy.customFramesToSnapshot = framesToSnapshot
     return copy
   }
 
@@ -273,9 +333,11 @@ extension SnapshotConfiguration {
   func shouldSnapshot(using configuration: LottieConfiguration) -> Bool {
     switch configuration.renderingEngine {
     case .automatic:
-      return testWithAutomaticEngine
-    case .specific:
-      return true
+      testWithAutomaticEngine
+    case .specific(.coreAnimation):
+      !excludeCoreAnimationRenderingEngine
+    case .specific(.mainThread):
+      true
     }
   }
 }

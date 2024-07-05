@@ -187,7 +187,6 @@ extension CALayer {
           try setUpRepeater(
             repeater,
             items: repeaterGrouping.grouping,
-            parentGroup: parentGroup,
             parentGroupPath: parentGroupPath,
             context: context)
         }
@@ -222,7 +221,6 @@ extension CALayer {
   private func setUpRepeater(
     _ repeater: Repeater,
     items allItems: [ShapeItemLayer.Item],
-    parentGroup: Group?,
     parentGroupPath: [String],
     context: LayerContext)
     throws
@@ -233,7 +231,7 @@ extension CALayer {
     for index in 0..<copyCount {
       let groupLayers = try makeGroupLayers(
         from: items,
-        parentGroup: parentGroup,
+        parentGroup: nil, // The repeater layer acts as the parent of its sublayers
         parentGroupPath: parentGroupPath,
         context: context)
 
@@ -310,11 +308,11 @@ extension ShapeItem {
   var drawsCGPath: Bool {
     switch type {
     case .ellipse, .rectangle, .shape, .star:
-      return true
+      true
 
     case .fill, .gradientFill, .group, .gradientStroke, .merge,
          .repeater, .round, .stroke, .trim, .transform, .unknown:
-      return false
+      false
     }
   }
 
@@ -322,11 +320,11 @@ extension ShapeItem {
   var isFill: Bool {
     switch type {
     case .fill, .gradientFill:
-      return true
+      true
 
     case .ellipse, .rectangle, .shape, .star, .group, .gradientStroke,
          .merge, .repeater, .round, .stroke, .trim, .transform, .unknown:
-      return false
+      false
     }
   }
 
@@ -334,18 +332,18 @@ extension ShapeItem {
   var isStroke: Bool {
     switch type {
     case .stroke, .gradientStroke:
-      return true
+      true
 
     case .ellipse, .rectangle, .shape, .star, .group, .gradientFill,
          .merge, .repeater, .round, .fill, .trim, .transform, .unknown:
-      return false
+      false
     }
   }
 
-  // For any inherited shape items that are affected by scaling (e.g. strokes but not fills),
-  // any `ShapeTransform` in the given child group isn't supposed to be applied to the item.
-  // To cancel out the effect of the transform, we can apply an inverse transform to the
-  // shape item.
+  /// For any inherited shape items that are affected by scaling (e.g. strokes but not fills),
+  /// any `ShapeTransform` in the given child group isn't supposed to be applied to the item.
+  /// To cancel out the effect of the transform, we can apply an inverse transform to the
+  /// shape item.
   func scaledCopyForChildGroup(_ childGroup: Group, context: LayerContext) throws -> ShapeItem {
     guard
       // Path-drawing items aren't inherited by child groups in this way
@@ -427,7 +425,7 @@ struct ShapeRenderGroup {
   var otherItems: [ShapeItemLayer.Item] = []
 }
 
-extension Array where Element == ShapeItemLayer.Item {
+extension [ShapeItemLayer.Item] {
   /// Splits this list of `ShapeItem`s into groups that should be rendered together as individual units,
   /// plus the remaining items that were not included in any group.
   ///  - groupHasChildGroupsToInheritUnusedItems: whether or not this group has child groups
@@ -504,15 +502,15 @@ extension Array where Element == ShapeItemLayer.Item {
 
       // A `CAShapeLayer` can only draw a stroke on top of a fill -- if the fill is supposed to be
       // drawn on top of the stroke, then they have to be rendered as separate layers.
-      let strokeDrawnOnTopOfFill: Bool
-      if
-        let strokeIndex = strokesAndFills.firstIndex(where: { $0.item.isStroke }),
-        let fillIndex = strokesAndFills.firstIndex(where: { $0.item.isFill })
-      {
-        strokeDrawnOnTopOfFill = strokeIndex < fillIndex
-      } else {
-        strokeDrawnOnTopOfFill = false
-      }
+      let strokeDrawnOnTopOfFill: Bool =
+        if
+          let strokeIndex = strokesAndFills.firstIndex(where: { $0.item.isStroke }),
+          let fillIndex = strokesAndFills.firstIndex(where: { $0.item.isFill })
+        {
+          strokeIndex < fillIndex
+        } else {
+          false
+        }
 
       // `Fill` and `Stroke` items have an `alpha` property that can be animated separately,
       // but each layer only has a single `opacity` property. We can only use a single `CAShapeLayer`

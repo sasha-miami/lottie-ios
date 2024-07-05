@@ -35,7 +35,7 @@ struct AnimationListView: View {
               Text(item.name)
             }
 
-          case .animationList, .controlsDemo:
+          case .animationList, .controlsDemo, .swiftUIInteroperability, .lottieViewLayoutDemo:
             Text(item.name)
               .frame(height: 50)
           }
@@ -50,6 +50,10 @@ struct AnimationListView: View {
             AnimationListView(content: listContent)
           case .controlsDemo:
             ControlsDemoView()
+          case .swiftUIInteroperability:
+            SwiftUIInteroperabilityDemoView()
+          case .lottieViewLayoutDemo:
+            LottieViewLayoutDemoView()
           }
         }
       }
@@ -70,7 +74,7 @@ struct AnimationListView: View {
       guard let url = urls.first else { return nil }
       return await LottieAnimation.loadedFrom(url: url)?.animationSource
 
-    case .animationList, .controlsDemo:
+    case .animationList, .controlsDemo, .swiftUIInteroperability, .lottieViewLayoutDemo:
       return nil
     }
   }
@@ -84,9 +88,9 @@ struct AnimationListView: View {
   private var directory: String {
     switch content {
     case .directory(let directory):
-      return directory
+      directory
     case .custom:
-      return "n/a"
+      "n/a"
     }
   }
 
@@ -101,17 +105,19 @@ extension AnimationListView {
     case animation(name: String, path: String)
     case remoteAnimations(name: String, urls: [URL])
     case controlsDemo
+    case swiftUIInteroperability
+    case lottieViewLayoutDemo
   }
 
   var items: [Item] {
     switch content {
     case .directory:
-      return animations.map { .animation(name: $0.name, path: $0.path) }
+      animations.map { .animation(name: $0.name, path: $0.path) }
         + subdirectoryURLs.map { .animationList(.directory("\(directory)/\($0.lastPathComponent)")) }
         + customDemos
 
     case .custom(_, let items):
-      return items
+      items
     }
   }
 
@@ -155,6 +161,8 @@ extension AnimationListView {
     return [
       .animationList(.remoteAnimationsDemo),
       .controlsDemo,
+      .swiftUIInteroperability,
+      .lottieViewLayoutDemo,
     ]
   }
 }
@@ -163,11 +171,15 @@ extension AnimationListView.Item {
   var name: String {
     switch self {
     case .animation(let animationName, _), .remoteAnimations(let animationName, _):
-      return animationName
+      animationName
     case .animationList(let content):
-      return content.name
+      content.name
     case .controlsDemo:
-      return "Controls Demo"
+      "Controls Demo"
+    case .swiftUIInteroperability:
+      "SwiftUI Interoperability Demo"
+    case .lottieViewLayoutDemo:
+      "LottieView Layout Demo"
     }
   }
 }
@@ -192,9 +204,9 @@ extension AnimationListView.Content {
   var name: String {
     switch self {
     case .directory(let directory):
-      return directory.components(separatedBy: "/").last ?? directory
+      directory.components(separatedBy: "/").last ?? directory
     case .custom(let name, _):
-      return name
+      name
     }
   }
 }

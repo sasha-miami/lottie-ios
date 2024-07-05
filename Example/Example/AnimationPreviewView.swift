@@ -17,6 +17,7 @@ struct AnimationPreviewView: View {
     case .remote(let urls, _):
       _currentURLIndex = State(initialValue: urls.startIndex)
       self.urls = urls
+
     default:
       _currentURLIndex = State(initialValue: 0)
       urls = []
@@ -32,9 +33,9 @@ struct AnimationPreviewView: View {
     var name: String {
       switch self {
       case .local(let name):
-        return name
+        name
       case .remote(_, let name):
-        return name
+        name
       }
     }
   }
@@ -44,7 +45,10 @@ struct AnimationPreviewView: View {
   var body: some View {
     VStack {
       LottieView {
-        try await loadAnimation()
+        try await Self.loadAnimation(
+          from: animationSource,
+          urls: urls,
+          currentURLIndex: currentURLIndex)
       } placeholder: {
         LoadingIndicator()
           .frame(width: 50, height: 50)
@@ -121,9 +125,9 @@ struct AnimationPreviewView: View {
 
   private var playbackMode: LottiePlaybackMode {
     if animationPlaying {
-      return .playing(.fromProgress(playFromProgress, toProgress: playToProgress, loopMode: loopMode))
+      .playing(.fromProgress(playFromProgress, toProgress: playToProgress, loopMode: loopMode))
     } else {
-      return .paused(at: .progress(sliderValue))
+      .paused(at: .progress(sliderValue))
     }
   }
 
@@ -172,17 +176,22 @@ struct AnimationPreviewView: View {
     #endif
   }
 
-  private func loadAnimation() async throws -> LottieAnimationSource? {
+  private static func loadAnimation(
+    from animationSource: AnimationSource,
+    urls: [URL],
+    currentURLIndex: Int)
+    async throws -> LottieAnimationSource?
+  {
     switch animationSource {
     case .local(let name):
       if name.hasSuffix(".lottie") {
-        return try await DotLottieFile.named(name).animationSource
+        try await DotLottieFile.named(name).animationSource
       } else {
-        return LottieAnimation.named(name)?.animationSource
+        LottieAnimation.named(name)?.animationSource
       }
 
     case .remote:
-      return await LottieAnimation.loadedFrom(url: urls[currentURLIndex])?.animationSource
+      await LottieAnimation.loadedFrom(url: urls[currentURLIndex])?.animationSource
     }
   }
 

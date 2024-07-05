@@ -31,16 +31,13 @@ public class BundleImageProvider: AnimationImageProvider {
   // MARK: Public
 
   public func imageForAsset(asset: ImageAsset) -> CGImage? {
-    if
-      let data = Data(imageAsset: asset),
-      let image = NSImage(data: data)
-    {
-      return image.lottie_CGImage
+    if let base64Image = asset.base64Image {
+      return base64Image
     }
 
     let imagePath: String?
     /// Try to find the image in the bundle.
-    if let searchPath = searchPath {
+    if let searchPath {
       /// Search in the provided search path for the image
       var directoryPath = URL(fileURLWithPath: searchPath)
       directoryPath.appendPathComponent(asset.directory)

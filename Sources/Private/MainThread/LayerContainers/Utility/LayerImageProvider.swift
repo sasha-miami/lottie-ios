@@ -5,9 +5,12 @@
 //  Created by Brandon Withrow on 1/25/19.
 //
 
+//<<<<<<< HEAD
 import Foundation
 import UIKit
-
+//
+//=======
+//>>>>>>> master
 /// Connects a LottieImageProvider to a group of image layers
 final class LayerImageProvider {
 
@@ -16,7 +19,7 @@ final class LayerImageProvider {
   init(imageProvider: AnimationImageProvider, assets: [String: ImageAsset]?) {
     self.imageProvider = imageProvider
     imageLayers = [ImageCompositionLayer]()
-    if let assets = assets {
+    if let assets {
       imageAssets = assets
     } else {
       imageAssets = [:]

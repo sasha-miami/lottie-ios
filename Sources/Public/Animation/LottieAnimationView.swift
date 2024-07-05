@@ -5,7 +5,6 @@
 //  Created by Brandon Withrow on 1/23/19.
 //
 
-import Foundation
 import QuartzCore
 
 // MARK: - LottieBackgroundBehavior
@@ -44,9 +43,9 @@ public enum LottieBackgroundBehavior {
   public static func `default`(for renderingEngine: RenderingEngine) -> LottieBackgroundBehavior {
     switch renderingEngine {
     case .mainThread:
-      return .pauseAndRestore
+      .pauseAndRestore
     case .coreAnimation:
-      return .continuePlaying
+      .continuePlaying
     }
   }
 }
@@ -74,13 +73,13 @@ extension LottieLoopMode: Equatable {
     switch (lhs, rhs) {
     case (.repeat(let lhsAmount), .repeat(let rhsAmount)),
          (.repeatBackwards(let lhsAmount), .repeatBackwards(let rhsAmount)):
-      return lhsAmount == rhsAmount
+      lhsAmount == rhsAmount
     case (.playOnce, .playOnce),
          (.loop, .loop),
          (.autoReverse, .autoReverse):
-      return true
+      true
     default:
-      return false
+      false
     }
   }
 }
@@ -115,7 +114,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
     self.logger = logger
     super.init(frame: .zero)
     commonInit()
-    if let animation = animation {
+    if let animation {
       frame = animation.bounds
     }
   }
@@ -139,7 +138,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
     self.logger = logger
     super.init(frame: .zero)
     commonInit()
-    if let animation = animation {
+    if let animation {
       frame = animation.bounds
     }
   }
@@ -438,7 +437,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
   /// ```
   public var animationLoaded: ((_ animationView: LottieAnimationView, _ animation: LottieAnimation) -> Void)? {
     didSet {
-      if let animation = animation {
+      if let animation {
         animationLoaded?(self, animation)
       }
     }
@@ -568,9 +567,9 @@ open class LottieAnimationView: LottieAnimationViewBase {
       // duration and curve are captured and added to the layer. This is used in the
       // layout block to animate the animationLayer's position and size.
       let rect = bounds
-      self.bounds = CGRect.zero
-      self.bounds = rect
-      self.setNeedsLayout()
+      bounds = CGRect.zero
+      bounds = rect
+      setNeedsLayout()
     }
   }
 
@@ -819,7 +818,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
 
   // MARK: Internal
 
-  // The backing CALayer for this animation view.
+  /// The backing CALayer for this animation view.
   let lottieAnimationLayer: LottieAnimationLayer
 
   var animationLayer: RootAnimationLayer? {
@@ -829,7 +828,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
   /// Set animation name from Interface Builder
   @IBInspectable var animationName: String? {
     didSet {
-      self.lottieAnimationLayer.animation = animationName.flatMap { LottieAnimation.named($0, animationCache: nil)
+      lottieAnimationLayer.animation = animationName.flatMap { LottieAnimation.named($0, animationCache: nil)
       }
     }
   }
@@ -840,16 +839,16 @@ open class LottieAnimationView: LottieAnimationViewBase {
     viewLayer?.addSublayer(lottieAnimationLayer)
 
     lottieAnimationLayer.animationLoaded = { [weak self] _, animation in
-      guard let self = self else { return }
-      self.animationLoaded?(self, animation)
-      self.invalidateIntrinsicContentSize()
-      self.setNeedsLayout()
+      guard let self else { return }
+      animationLoaded?(self, animation)
+      invalidateIntrinsicContentSize()
+      setNeedsLayout()
     }
 
     lottieAnimationLayer.animationLayerDidLoad = { [weak self] _, _ in
-      guard let self = self else { return }
-      self.invalidateIntrinsicContentSize()
-      self.setNeedsLayout()
+      guard let self else { return }
+      invalidateIntrinsicContentSize()
+      setNeedsLayout()
     }
   }
 
@@ -860,8 +859,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
     let xform: CATransform3D
     var shouldForceUpdates = false
 
-    if let viewportFrame = viewportFrame {
-      setNeedsLayout()
+    if let viewportFrame {
       shouldForceUpdates = contentMode == .redraw
 
       let compAspect = viewportFrame.size.width / viewportFrame.size.height
@@ -1001,11 +999,7 @@ open class LottieAnimationView: LottieAnimationViewBase {
   }
 
   func updateRasterizationState() {
-    if lottieAnimationLayer.isAnimationPlaying {
-      lottieAnimationLayer.animationLayer?.shouldRasterize = false
-    } else {
-      lottieAnimationLayer.animationLayer?.shouldRasterize = lottieAnimationLayer.shouldRasterizeWhenIdle
-    }
+    lottieAnimationLayer.updateRasterizationState()
   }
 
   /// Updates the animation frame. Does not affect any current animations

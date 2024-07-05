@@ -85,13 +85,11 @@
 		080DEFB82A95710300BE2D96 /* AnyEpoxyModelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206DB2A56014E002DCE17 /* AnyEpoxyModelProperty.swift */; };
 		080DEFB92A95710300BE2D96 /* EpoxyModelProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206DC2A56014E002DCE17 /* EpoxyModelProperty.swift */; };
 		080DEFBA2A95710300BE2D96 /* ClassReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206DA2A56014E002DCE17 /* ClassReference.swift */; };
-		080DEFBB2A95710800BE2D96 /* EpoxySwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */; };
 		080DEFBC2A95710800BE2D96 /* EpoxySwiftUILayoutMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206BC2A56014E002DCE17 /* EpoxySwiftUILayoutMargins.swift */; };
 		080DEFBD2A95710800BE2D96 /* EpoxyableView+SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206BE2A56014E002DCE17 /* EpoxyableView+SwiftUIView.swift */; };
 		080DEFBE2A95710800BE2D96 /* UIView+SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */; };
 		080DEFBF2A95710800BE2D96 /* UIViewConfiguringSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206BB2A56014E002DCE17 /* UIViewConfiguringSwiftUIView.swift */; };
 		080DEFC02A95710800BE2D96 /* EpoxySwiftUIIntrinsicContentSizeInvalidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206BD2A56014E002DCE17 /* EpoxySwiftUIIntrinsicContentSizeInvalidator.swift */; };
-		080DEFC12A95710800BE2D96 /* EpoxySwiftUIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */; };
 		080DEFC22A95710800BE2D96 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C42A56014E002DCE17 /* SwiftUIView.swift */; };
 		080DEFC32A95710B00BE2D96 /* SwiftUIMeasurementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C02A56014E002DCE17 /* SwiftUIMeasurementContainer.swift */; };
 		080DEFC42A95710B00BE2D96 /* MeasuringViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C12A56014E002DCE17 /* MeasuringViewRepresentable.swift */; };
@@ -331,6 +329,10 @@
 		0887347C28F0CCDD00458627 /* LottieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887347428F0CCDD00458627 /* LottieAnimationView.swift */; };
 		0887347D28F0CCDD00458627 /* LottieAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0887347428F0CCDD00458627 /* LottieAnimationView.swift */; };
 		089C50C22ABA0C6D007903D3 /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089C50C12ABA0C6D007903D3 /* LoggingTests.swift */; };
+		089E5D9F2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */; };
+		089E5DA02B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */; };
+		089E5DA12B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */; };
+		089E5DA22B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */; };
 		08AB05552A61C20400DE86FD /* ReducedMotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB05542A61C20400DE86FD /* ReducedMotionOption.swift */; };
 		08AB05562A61C20400DE86FD /* ReducedMotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB05542A61C20400DE86FD /* ReducedMotionOption.swift */; };
 		08AB05572A61C20400DE86FD /* ReducedMotionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB05542A61C20400DE86FD /* ReducedMotionOption.swift */; };
@@ -340,6 +342,10 @@
 		08AB055D2A61C5CC00DE86FD /* RenderingEngineOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB055C2A61C5CC00DE86FD /* RenderingEngineOption.swift */; };
 		08AB055E2A61C5CC00DE86FD /* RenderingEngineOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB055C2A61C5CC00DE86FD /* RenderingEngineOption.swift */; };
 		08AB055F2A61C5CC00DE86FD /* RenderingEngineOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AB055C2A61C5CC00DE86FD /* RenderingEngineOption.swift */; };
+		08BCA8472B0E8E0B00594EEB /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCA8452B0E8E0B00594EEB /* LRUCache.swift */; };
+		08BCA8482B0E8E0B00594EEB /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCA8452B0E8E0B00594EEB /* LRUCache.swift */; };
+		08BCA8492B0E8E0B00594EEB /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCA8452B0E8E0B00594EEB /* LRUCache.swift */; };
+		08BCA84A2B0E8E0B00594EEB /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BCA8452B0E8E0B00594EEB /* LRUCache.swift */; };
 		08C001F32A46150D00AB54BA /* Archive+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C001E02A46150D00AB54BA /* Archive+Helpers.swift */; };
 		08C001F42A46150D00AB54BA /* Archive+MemoryFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C001E12A46150D00AB54BA /* Archive+MemoryFile.swift */; };
 		08C001F52A46150D00AB54BA /* Archive+BackingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C001E22A46150D00AB54BA /* Archive+BackingConfiguration.swift */; };
@@ -451,18 +457,12 @@
 		08E2070F2A56014E002DCE17 /* MeasuringViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C12A56014E002DCE17 /* MeasuringViewRepresentable.swift */; };
 		08E207102A56014E002DCE17 /* MeasuringViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C12A56014E002DCE17 /* MeasuringViewRepresentable.swift */; };
 		08E207112A56014E002DCE17 /* MeasuringViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C12A56014E002DCE17 /* MeasuringViewRepresentable.swift */; };
-		08E207122A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */; };
-		08E207132A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */; };
-		08E207142A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */; };
 		08E207152A56014E002DCE17 /* UIView+SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */; };
 		08E207162A56014E002DCE17 /* UIView+SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */; };
 		08E207172A56014E002DCE17 /* UIView+SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */; };
 		08E207182A56014E002DCE17 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C42A56014E002DCE17 /* SwiftUIView.swift */; };
 		08E207192A56014E002DCE17 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C42A56014E002DCE17 /* SwiftUIView.swift */; };
 		08E2071A2A56014E002DCE17 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C42A56014E002DCE17 /* SwiftUIView.swift */; };
-		08E2071B2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */; };
-		08E2071C2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */; };
-		08E2071D2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */; };
 		08E2071E2A56014E002DCE17 /* EpoxyModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C72A56014E002DCE17 /* EpoxyModelStorage.swift */; };
 		08E2071F2A56014E002DCE17 /* EpoxyModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C72A56014E002DCE17 /* EpoxyModelStorage.swift */; };
 		08E207202A56014E002DCE17 /* EpoxyModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E206C72A56014E002DCE17 /* EpoxyModelStorage.swift */; };
@@ -552,6 +552,10 @@
 		08F8B20F2898A7B100CB5323 /* RepeaterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8B20C2898A7B100CB5323 /* RepeaterLayer.swift */; };
 		08F8B211289990B700CB5323 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 08F8B210289990B700CB5323 /* Samples */; };
 		08F8B213289990CB00CB5323 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8B212289990CB00CB5323 /* SnapshotTests.swift */; };
+		08FB47C62B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */; };
+		08FB47C72B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */; };
+		08FB47C82B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */; };
+		08FB47C92B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */; };
 		08FE934E28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE934D28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift */; };
 		08FE934F28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE934D28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift */; };
 		08FE935028F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FE934D28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift */; };
@@ -1147,6 +1151,14 @@
 		D453D8B228FF9EA900D3F49C /* DefaultAnimationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453D8B028FF9E3A00D3F49C /* DefaultAnimationCache.swift */; };
 		D453D8B328FF9EAA00D3F49C /* DefaultAnimationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453D8B028FF9E3A00D3F49C /* DefaultAnimationCache.swift */; };
 		D453D8B428FF9EAA00D3F49C /* DefaultAnimationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453D8B028FF9E3A00D3F49C /* DefaultAnimationCache.swift */; };
+		E95C386F2C14B7FC00329910 /* DropShadowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C386E2C14B7FC00329910 /* DropShadowNode.swift */; };
+		E95C38712C14D14300329910 /* LayerEffectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C38702C14D14300329910 /* LayerEffectNode.swift */; };
+		E95C38722C15559500329910 /* DropShadowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C386E2C14B7FC00329910 /* DropShadowNode.swift */; };
+		E95C38732C15559600329910 /* DropShadowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C386E2C14B7FC00329910 /* DropShadowNode.swift */; };
+		E95C38742C15559700329910 /* DropShadowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C386E2C14B7FC00329910 /* DropShadowNode.swift */; };
+		E95C38752C15559D00329910 /* LayerEffectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C38702C14D14300329910 /* LayerEffectNode.swift */; };
+		E95C38762C15559E00329910 /* LayerEffectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C38702C14D14300329910 /* LayerEffectNode.swift */; };
+		E95C38772C15559F00329910 /* LayerEffectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95C38702C14D14300329910 /* LayerEffectNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1173,14 +1185,18 @@
 		0820D5C12A8BF60F007D705C /* EffectValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EffectValue.swift; sourceTree = "<group>"; };
 		0820D5CC2A8BF6FF007D705C /* ColorEffectValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorEffectValue.swift; sourceTree = "<group>"; };
 		0820D5D02A8C006E007D705C /* DropShadowAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadowAnimation.swift; sourceTree = "<group>"; };
+		086DFA8A2BA0D46900CE8687 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 		0887346E28F0CBDE00458627 /* LottieAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieAnimation.swift; sourceTree = "<group>"; };
 		0887347228F0CCDD00458627 /* LottieAnimationHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieAnimationHelpers.swift; sourceTree = "<group>"; };
 		0887347328F0CCDD00458627 /* LottieAnimationViewInitializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieAnimationViewInitializers.swift; sourceTree = "<group>"; };
 		0887347428F0CCDD00458627 /* LottieAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieAnimationView.swift; sourceTree = "<group>"; };
 		089C50C12ABA0C6D007903D3 /* LoggingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingTests.swift; sourceTree = "<group>"; };
+		089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyframes+timeRemapping.swift"; sourceTree = "<group>"; };
 		08AB05542A61C20400DE86FD /* ReducedMotionOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducedMotionOption.swift; sourceTree = "<group>"; };
 		08AB05582A61C5B700DE86FD /* DecodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingStrategy.swift; sourceTree = "<group>"; };
 		08AB055C2A61C5CC00DE86FD /* RenderingEngineOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingEngineOption.swift; sourceTree = "<group>"; };
+		08BCA8452B0E8E0B00594EEB /* LRUCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
+		08BCA8462B0E8E0B00594EEB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		08C001E02A46150D00AB54BA /* Archive+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Archive+Helpers.swift"; sourceTree = "<group>"; };
 		08C001E12A46150D00AB54BA /* Archive+MemoryFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Archive+MemoryFile.swift"; sourceTree = "<group>"; };
 		08C001E22A46150D00AB54BA /* Archive+BackingConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Archive+BackingConfiguration.swift"; sourceTree = "<group>"; };
@@ -1222,10 +1238,8 @@
 		08E206BE2A56014E002DCE17 /* EpoxyableView+SwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EpoxyableView+SwiftUIView.swift"; sourceTree = "<group>"; };
 		08E206C02A56014E002DCE17 /* SwiftUIMeasurementContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIMeasurementContainer.swift; sourceTree = "<group>"; };
 		08E206C12A56014E002DCE17 /* MeasuringViewRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasuringViewRepresentable.swift; sourceTree = "<group>"; };
-		08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpoxySwiftUIHostingController.swift; sourceTree = "<group>"; };
 		08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SwiftUIView.swift"; sourceTree = "<group>"; };
 		08E206C42A56014E002DCE17 /* SwiftUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpoxySwiftUIHostingView.swift; sourceTree = "<group>"; };
 		08E206C72A56014E002DCE17 /* EpoxyModelStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpoxyModelStorage.swift; sourceTree = "<group>"; };
 		08E206C82A56014E002DCE17 /* CallbackContextEpoxyModeled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackContextEpoxyModeled.swift; sourceTree = "<group>"; };
 		08E206CA2A56014E002DCE17 /* ViewDifferentiatorProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDifferentiatorProviding.swift; sourceTree = "<group>"; };
@@ -1257,6 +1271,7 @@
 		08F8B20C2898A7B100CB5323 /* RepeaterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeaterLayer.swift; sourceTree = "<group>"; };
 		08F8B210289990B700CB5323 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		08F8B212289990CB00CB5323 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
+		08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Sources/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		08FE934D28F4CCAC00D3A7E6 /* InfiniteOpaqueAnimationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteOpaqueAnimationLayer.swift; sourceTree = "<group>"; };
 		19465F51282F998B00BB2C97 /* CachedImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageProvider.swift; sourceTree = "<group>"; };
 		2E044E262820536800FA773B /* AutomaticEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticEngineTests.swift; sourceTree = "<group>"; };
@@ -1469,6 +1484,8 @@
 		D453D8AA28FE6EE300D3F49C /* LottieAnimationCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimationCache.swift; sourceTree = "<group>"; };
 		D453D8AE28FF9BC600D3F49C /* AnimationCacheProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCacheProviderTests.swift; sourceTree = "<group>"; };
 		D453D8B028FF9E3A00D3F49C /* DefaultAnimationCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnimationCache.swift; sourceTree = "<group>"; };
+		E95C386E2C14B7FC00329910 /* DropShadowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropShadowNode.swift; sourceTree = "<group>"; };
+		E95C38702C14D14300329910 /* LayerEffectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerEffectNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1553,12 +1570,22 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		08BCA8442B0E8E0B00594EEB /* LRUCache */ = {
+			isa = PBXGroup;
+			children = (
+				08BCA8452B0E8E0B00594EEB /* LRUCache.swift */,
+				08BCA8462B0E8E0B00594EEB /* README.md */,
+			);
+			path = LRUCache;
+			sourceTree = "<group>";
+		};
 		08C001DE2A4614CF00AB54BA /* EmbeddedLibraries */ = {
 			isa = PBXGroup;
 			children = (
 				08C002062A46152200AB54BA /* README.md */,
 				08C0021E2A46166400AB54BA /* EpoxyCore */,
 				08C001DF2A46150D00AB54BA /* ZipFoundation */,
+				08BCA8442B0E8E0B00594EEB /* LRUCache */,
 			);
 			path = EmbeddedLibraries;
 			sourceTree = "<group>";
@@ -1642,10 +1669,8 @@
 				08E206BD2A56014E002DCE17 /* EpoxySwiftUIIntrinsicContentSizeInvalidator.swift */,
 				08E206BE2A56014E002DCE17 /* EpoxyableView+SwiftUIView.swift */,
 				08E206BF2A56014E002DCE17 /* LayoutUtilities */,
-				08E206C22A56014E002DCE17 /* EpoxySwiftUIHostingController.swift */,
 				08E206C32A56014E002DCE17 /* UIView+SwiftUIView.swift */,
 				08E206C42A56014E002DCE17 /* SwiftUIView.swift */,
-				08E206C52A56014E002DCE17 /* EpoxySwiftUIHostingView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1722,6 +1747,8 @@
 			children = (
 				2EAF59C027A0798600E00531 /* Sources */,
 				2E8040BA27A07343006E74CB /* Tests */,
+				08FB47C52B23B86500744478 /* PrivacyInfo.xcprivacy */,
+				086DFA8A2BA0D46900CE8687 /* Version.xcconfig */,
 				2E80409B27A0725D006E74CB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1942,6 +1969,7 @@
 		2E9C95662822F43000677516 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				E95C386D2C14B7DC00329910 /* LayerEffectNodes */,
 				2E9C95672822F43000677516 /* ModifierNodes */,
 				2E9C95692822F43000677516 /* RenderContainers */,
 				2E9C956B2822F43000677516 /* OutputNodes */,
@@ -2123,6 +2151,7 @@
 				2E9C95AA2822F43100677516 /* CALayer+fillBounds.swift */,
 				2E9C95AB2822F43100677516 /* Keyframes+combined.swift */,
 				2E9C95AC2822F43100677516 /* KeyframeGroup+exactlyOneKeyframe.swift */,
+				089E5D9E2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2428,6 +2457,15 @@
 			path = DotLottie;
 			sourceTree = "<group>";
 		};
+		E95C386D2C14B7DC00329910 /* LayerEffectNodes */ = {
+			isa = PBXGroup;
+			children = (
+				E95C386E2C14B7FC00329910 /* DropShadowNode.swift */,
+				E95C38702C14D14300329910 /* LayerEffectNode.swift */,
+			);
+			path = LayerEffectNodes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2616,6 +2654,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FB47C92B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2623,6 +2662,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FB47C62B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2639,6 +2679,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FB47C72B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2646,6 +2687,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FB47C82B23B86500744478 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2688,11 +2730,13 @@
 				080DEF6F2A95709700BE2D96 /* RenderingEngineOption.swift in Sources */,
 				080DEFB22A9570FE00BE2D96 /* ErasedContentProviding.swift in Sources */,
 				080DF0772A95717D00BE2D96 /* CompoundBezierPath.swift in Sources */,
+				E95C38742C15559700329910 /* DropShadowNode.swift in Sources */,
 				080DEF8E2A9570D500BE2D96 /* LottieColor.swift in Sources */,
 				080DF0162A95713800BE2D96 /* PathOutputNode.swift in Sources */,
 				080DF00A2A95713000BE2D96 /* InvertedMatteLayer.swift in Sources */,
 				080DEFCD2A95711400BE2D96 /* Archive.swift in Sources */,
 				080DEF912A9570DD00BE2D96 /* LRUAnimationCache.swift in Sources */,
+				E95C38772C15559F00329910 /* LayerEffectNode.swift in Sources */,
 				080DF05D2A95716A00BE2D96 /* ImageAsset.swift in Sources */,
 				080DF0722A95717D00BE2D96 /* UnitBezier.swift in Sources */,
 				080DF05E2A95716D00BE2D96 /* EffectValue.swift in Sources */,
@@ -2765,7 +2809,6 @@
 				080DF0632A95717000BE2D96 /* DropShadowStyle.swift in Sources */,
 				080DEFF72A95712400BE2D96 /* RectangleAnimation.swift in Sources */,
 				080DEF712A95709D00BE2D96 /* LottieAnimationView.swift in Sources */,
-				080DEFC12A95710800BE2D96 /* EpoxySwiftUIHostingView.swift in Sources */,
 				080DF0792A95717F00BE2D96 /* KeyframeExtensions.swift in Sources */,
 				080DF0062A95712D00BE2D96 /* ShapeCompositionLayer.swift in Sources */,
 				080DEF702A95709700BE2D96 /* ReducedMotionOption.swift in Sources */,
@@ -2792,7 +2835,6 @@
 				080DF0142A95713500BE2D96 /* GroupNode.swift in Sources */,
 				080DF0212A95713B00BE2D96 /* PolygonNode.swift in Sources */,
 				080DF0372A95715600BE2D96 /* DotLottieManifest.swift in Sources */,
-				080DEFBB2A95710800BE2D96 /* EpoxySwiftUIHostingController.swift in Sources */,
 				080DEF9F2A9570F600BE2D96 /* SectionedChangeset.swift in Sources */,
 				080DF05F2A95716D00BE2D96 /* ColorEffectValue.swift in Sources */,
 				080DF04D2A95715C00BE2D96 /* ShapeLayerModel.swift in Sources */,
@@ -2876,6 +2918,7 @@
 				080DEFFE2A95712400BE2D96 /* GradientAnimations.swift in Sources */,
 				080DF03C2A95715900BE2D96 /* Star.swift in Sources */,
 				080DEFD32A95711400BE2D96 /* Entry+Serialization.swift in Sources */,
+				08BCA84A2B0E8E0B00594EEB /* LRUCache.swift in Sources */,
 				080DF01D2A95713B00BE2D96 /* StarNode.swift in Sources */,
 				080DEFB02A9570FE00BE2D96 /* AnimatedProviding.swift in Sources */,
 				080DEFC72A95710F00BE2D96 /* EpoxyableView.swift in Sources */,
@@ -2915,6 +2958,7 @@
 				080DEFB12A9570FE00BE2D96 /* WillDisplayProviding.swift in Sources */,
 				080DEFE82A95711E00BE2D96 /* ImageLayer.swift in Sources */,
 				080DF0672A95717600BE2D96 /* AnimatorNodeDebugging.swift in Sources */,
+				089E5DA22B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */,
 				080DEFAC2A9570FE00BE2D96 /* StyleIDProviding.swift in Sources */,
 				080DF0002A95712400BE2D96 /* CombinedShapeAnimation.swift in Sources */,
 				080DEFD42A95711400BE2D96 /* Archive+Helpers.swift in Sources */,
@@ -2977,11 +3021,13 @@
 				0887346F28F0CBDE00458627 /* LottieAnimation.swift in Sources */,
 				08C002002A46150D00AB54BA /* Data+CompressionDeprecated.swift in Sources */,
 				0820D5B82A8BF159007D705C /* DropShadowStyle.swift in Sources */,
+				089E5D9F2B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */,
 				2E9C97412822F43100677516 /* TestHelpers.swift in Sources */,
 				08EF21DC289C643B0097EA47 /* KeyframeInterpolator.swift in Sources */,
 				2E9C96152822F43100677516 /* Transform.swift in Sources */,
 				2E9C97472822F43100677516 /* CGFloatExtensions.swift in Sources */,
 				2EAF5AC527A0798700E00531 /* UIColorExtension.swift in Sources */,
+				E95C386F2C14B7FC00329910 /* DropShadowNode.swift in Sources */,
 				2E9C967E2822F43100677516 /* GradientStrokeRenderer.swift in Sources */,
 				08E207182A56014E002DCE17 /* SwiftUIView.swift in Sources */,
 				2E9C96932822F43100677516 /* PolygonNode.swift in Sources */,
@@ -3110,7 +3156,6 @@
 				6C4877FF28FF20140005AF07 /* DotLottieAnimation.swift in Sources */,
 				2E9C97262822F43100677516 /* StrokeAnimation.swift in Sources */,
 				2E9C97382822F43100677516 /* VisibilityAnimation.swift in Sources */,
-				08E207122A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */,
 				2EAF5AD727A0798700E00531 /* Vectors.swift in Sources */,
 				2E9C95E22822F43100677516 /* Group.swift in Sources */,
 				2E9C97112822F43100677516 /* Keyframes+combined.swift in Sources */,
@@ -3164,6 +3209,7 @@
 				2E9C97652822F43100677516 /* CurveVertex.swift in Sources */,
 				0820D5C52A8BF60F007D705C /* EffectValue.swift in Sources */,
 				08C002042A46150D00AB54BA /* FileManager+ZIP.swift in Sources */,
+				E95C38712C14D14300329910 /* LayerEffectNode.swift in Sources */,
 				08E2072A2A56014E002DCE17 /* DidSelectProviding.swift in Sources */,
 				0820D5CD2A8BF6FF007D705C /* ColorEffectValue.swift in Sources */,
 				2E9C96482822F43100677516 /* NullCompositionLayer.swift in Sources */,
@@ -3175,9 +3221,9 @@
 				2E9C96242822F43100677516 /* KeyframeGroup.swift in Sources */,
 				2E9C96FF2822F43100677516 /* BaseAnimationLayer.swift in Sources */,
 				08E206F72A56014E002DCE17 /* Collection+Diff.swift in Sources */,
+				08BCA8472B0E8E0B00594EEB /* LRUCache.swift in Sources */,
 				08C001F62A46150D00AB54BA /* Archive.swift in Sources */,
 				2E9C96AB2822F43100677516 /* GradientStrokeNode.swift in Sources */,
-				08E2071B2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */,
 				08E207452A56014E002DCE17 /* DidDisplayProviding.swift in Sources */,
 				08E2074E2A56014E002DCE17 /* ViewEpoxyModeled.swift in Sources */,
 				2EAF5AC227A0798700E00531 /* BundleImageProvider.swift in Sources */,
@@ -3290,11 +3336,13 @@
 				2E9C966D2822F43100677516 /* LayerImageProvider.swift in Sources */,
 				2EAF5ABD27A0798700E00531 /* FilepathImageProvider.swift in Sources */,
 				2EAF5AEA27A0798700E00531 /* AnimationTextProvider.swift in Sources */,
+				089E5DA02B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */,
 				08E206FE2A56014E002DCE17 /* Diffable.swift in Sources */,
 				2E9C96672822F43100677516 /* LayerTransformNode.swift in Sources */,
 				0887347028F0CBDE00458627 /* LottieAnimation.swift in Sources */,
 				2E9C97422822F43100677516 /* TestHelpers.swift in Sources */,
 				08EF21DD289C643B0097EA47 /* KeyframeInterpolator.swift in Sources */,
+				E95C38722C15559500329910 /* DropShadowNode.swift in Sources */,
 				2E9C96162822F43100677516 /* Transform.swift in Sources */,
 				2E9C97482822F43100677516 /* CGFloatExtensions.swift in Sources */,
 				0820D5942A8ACD67007D705C /* LottieButton.swift in Sources */,
@@ -3311,7 +3359,6 @@
 				2E9C97722822F43100677516 /* AnimationContext.swift in Sources */,
 				2E9C96B22822F43100677516 /* NodeProperty.swift in Sources */,
 				08E6CF8A2A86E26F00A6D92F /* AnimatedSwitch.swift in Sources */,
-				08E2071C2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */,
 				2E9C965E2822F43100677516 /* MainThreadAnimationLayer.swift in Sources */,
 				AB87F02C2A72F5A80091D7B8 /* View+ValueChanged.swift in Sources */,
 				2E9C964F2822F43100677516 /* SolidCompositionLayer.swift in Sources */,
@@ -3477,6 +3524,7 @@
 				2E9C96492822F43100677516 /* NullCompositionLayer.swift in Sources */,
 				2EAF5AFF27A0798700E00531 /* GradientValueProvider.swift in Sources */,
 				2E9C96BE2822F43100677516 /* AnyValueContainer.swift in Sources */,
+				E95C38752C15559D00329910 /* LayerEffectNode.swift in Sources */,
 				08E2072B2A56014E002DCE17 /* DidSelectProviding.swift in Sources */,
 				2E9C96612822F43100677516 /* LayerFontProvider.swift in Sources */,
 				6C7698442A38A71200E9BEF4 /* DotLottieConfiguration.swift in Sources */,
@@ -3488,6 +3536,7 @@
 				2EAF5AC327A0798700E00531 /* BundleImageProvider.swift in Sources */,
 				08AB055A2A61C5B700DE86FD /* DecodingStrategy.swift in Sources */,
 				08E207492A56014E002DCE17 /* AnimatedProviding.swift in Sources */,
+				08BCA8482B0E8E0B00594EEB /* LRUCache.swift in Sources */,
 				2E9C976C2822F43100677516 /* InterpolatableExtensions.swift in Sources */,
 				2E9C96EE2822F43100677516 /* ShapeItemLayer.swift in Sources */,
 				08C002D62A46196300AB54BA /* Data+CompressionDeprecated.swift in Sources */,
@@ -3503,7 +3552,6 @@
 				2E9C96CD2822F43100677516 /* ShapeRenderLayer.swift in Sources */,
 				08E6CF8D2A86E26F00A6D92F /* LottieSwitch.swift in Sources */,
 				5721092029119F3100169699 /* BezierPathRoundExtension.swift in Sources */,
-				08E207132A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */,
 				ABF033B52A7B0ABA00F8C228 /* AnyEquatable.swift in Sources */,
 				08E2070A2A56014E002DCE17 /* EpoxyableView+SwiftUIView.swift in Sources */,
 				6C48780328FF20140005AF07 /* DotLottieFile.swift in Sources */,
@@ -3577,11 +3625,13 @@
 				0887347128F0CBDE00458627 /* LottieAnimation.swift in Sources */,
 				2E9C97432822F43100677516 /* TestHelpers.swift in Sources */,
 				0820D5BA2A8BF159007D705C /* DropShadowStyle.swift in Sources */,
+				089E5DA12B4CCD3F00F4F836 /* Keyframes+timeRemapping.swift in Sources */,
 				08EF21DE289C643B0097EA47 /* KeyframeInterpolator.swift in Sources */,
 				2E9C96172822F43100677516 /* Transform.swift in Sources */,
 				2E9C97492822F43100677516 /* CGFloatExtensions.swift in Sources */,
 				2EAF5AC727A0798700E00531 /* UIColorExtension.swift in Sources */,
 				2E9C96802822F43100677516 /* GradientStrokeRenderer.swift in Sources */,
+				E95C38732C15559600329910 /* DropShadowNode.swift in Sources */,
 				2E9C96952822F43100677516 /* PolygonNode.swift in Sources */,
 				08E2071A2A56014E002DCE17 /* SwiftUIView.swift in Sources */,
 				2E9C96E62822F43100677516 /* MaskCompositionLayer.swift in Sources */,
@@ -3710,7 +3760,6 @@
 				2E9C973A2822F43100677516 /* VisibilityAnimation.swift in Sources */,
 				2EAF5AD927A0798700E00531 /* Vectors.swift in Sources */,
 				2E9C95E42822F43100677516 /* Group.swift in Sources */,
-				08E207142A56014E002DCE17 /* EpoxySwiftUIHostingController.swift in Sources */,
 				2E9C97132822F43100677516 /* Keyframes+combined.swift in Sources */,
 				0887347D28F0CCDD00458627 /* LottieAnimationView.swift in Sources */,
 				08C002F12A46196300AB54BA /* Archive+Reading.swift in Sources */,
@@ -3764,6 +3813,7 @@
 				2E9C97672822F43100677516 /* CurveVertex.swift in Sources */,
 				0820D5C72A8BF60F007D705C /* EffectValue.swift in Sources */,
 				2E9C964A2822F43100677516 /* NullCompositionLayer.swift in Sources */,
+				E95C38762C15559E00329910 /* LayerEffectNode.swift in Sources */,
 				08E2072C2A56014E002DCE17 /* DidSelectProviding.swift in Sources */,
 				0820D5CF2A8BF6FF007D705C /* ColorEffectValue.swift in Sources */,
 				08C002ED2A46196300AB54BA /* Archive+Helpers.swift in Sources */,
@@ -3775,8 +3825,8 @@
 				2E9C97012822F43100677516 /* BaseAnimationLayer.swift in Sources */,
 				2E9C96AD2822F43100677516 /* GradientStrokeNode.swift in Sources */,
 				08E206F92A56014E002DCE17 /* Collection+Diff.swift in Sources */,
+				08BCA8492B0E8E0B00594EEB /* LRUCache.swift in Sources */,
 				2EAF5AC427A0798700E00531 /* BundleImageProvider.swift in Sources */,
-				08E2071D2A56014E002DCE17 /* EpoxySwiftUIHostingView.swift in Sources */,
 				2E9C976D2822F43100677516 /* InterpolatableExtensions.swift in Sources */,
 				08E207472A56014E002DCE17 /* DidDisplayProviding.swift in Sources */,
 				08E207502A56014E002DCE17 /* ViewEpoxyModeled.swift in Sources */,
@@ -3835,11 +3885,12 @@
 /* Begin XCBuildConfiguration section */
 		080DEF662A95707C00BE2D96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3856,7 +3907,7 @@
 					"@loader_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -3874,11 +3925,12 @@
 		};
 		080DEF672A95707C00BE2D96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3895,7 +3947,7 @@
 					"@loader_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -3912,6 +3964,7 @@
 		};
 		2E80409F27A0725D006E74CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -3944,7 +3997,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -3963,6 +4016,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3976,6 +4030,7 @@
 		};
 		2E8040A027A0725D006E74CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -4008,7 +4063,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4021,6 +4076,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -4034,11 +4090,12 @@
 		};
 		2E8040A227A0725D006E74CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4047,13 +4104,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4067,11 +4124,12 @@
 		};
 		2E8040A327A0725D006E74CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4080,13 +4138,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4100,6 +4158,7 @@
 		};
 		2E8040B427A072B8006E74CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -4119,6 +4178,7 @@
 		};
 		2E8040B527A072B8006E74CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -4138,11 +4198,12 @@
 		};
 		2EAF59B227A0787B00E00531 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4157,8 +4218,8 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4172,11 +4233,12 @@
 		};
 		2EAF59B327A0787B00E00531 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4191,8 +4253,8 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4206,11 +4268,12 @@
 		};
 		2EAF59BE27A078E400E00531 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4224,7 +4287,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4234,17 +4297,18 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Debug;
 		};
 		2EAF59BF27A078E400E00531 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 086DFA8A2BA0D46900CE8687 /* Version.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${CURRENT_PROJECT_VERSION}";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4258,7 +4322,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${MARKETING_VERSION}";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++17";
 				PRODUCT_BUNDLE_IDENTIFIER = com.airbnb.Lottie;
@@ -4268,7 +4332,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Release;
 		};
